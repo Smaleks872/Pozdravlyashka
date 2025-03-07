@@ -1,51 +1,47 @@
-const backgroundMusic = document.getElementById('background-music');
-const messageMusic = document.getElementById('message-music');
-const showGreetingButton = document.getElementById('show-greeting');
-const initialScreen = document.getElementById('initial-screen');
-const animalsScreen = document.getElementById('animals-screen');
-const messageModal = document.getElementById('message-modal');
-const messageContent = document.getElementById('message-content');
-const closeMessageButton = document.getElementById('close-message');
+document.addEventListener('DOMContentLoaded', function() {
+    const music = document.getElementById('background-music');
+    music.play(); // Воспроизведение фоновой музыки
 
-// Показать животных при нажатии кнопки
-showGreetingButton.addEventListener('click', () => {
-    initialScreen.style.display = 'none';
-    animalsScreen.style.display = 'flex';
-});
-
-// Показать поздравление при клике на животное
-animalsScreen.addEventListener('click', (event) => {
-    const animal = event.target.closest('.animal');
-    if (animal) {
-        const message = animal.getAttribute('data-message');
-        messageContent.textContent = message;
-        messageModal.style.display = 'flex';
-        backgroundMusic.pause();
-        messageMusic.play();
+    // Создание падающих цветочков
+    function createFlower() {
+        const flower = document.createElement('div');
+        flower.classList.add('flower');
+        flower.style.left = Math.random() * 100 + 'vw';
+        flower.style.animationDuration = Math.random() * 2 + 3 + 's'; // Случайная скорость
+        document.body.appendChild(flower);
+        flower.addEventListener('animationend', function() {
+            flower.remove();
+        });
     }
+    setInterval(createFlower, 300); // Новый цветочек каждые 300мс
+
+    // Показ животных при нажатии на кнопку
+    document.getElementById('show-congratulations').addEventListener('click', function() {
+        document.querySelector('.container').style.display = 'none';
+        document.getElementById('animals-container').style.display = 'flex';
+    });
+
+    // Показ поздравления при нажатии на животное
+    const animals = document.querySelectorAll('.animal');
+    const modal = document.getElementById('congratulation-modal');
+    const girlName = document.getElementById('girl-name');
+    const congratulationMessage = document.getElementById('congratulation-message');
+    const closeModal = document.getElementById('close-modal');
+    const congratulationMusic = document.getElementById('congratulation-music');
+
+    animals.forEach(animal => {
+        animal.addEventListener('click', function() {
+            const name = this.getAttribute('data-name');
+            girlName.textContent = name;
+            congratulationMessage.textContent = С 8 марта, ${name}! Желаю тебе счастья, любви и всего наилучшего!;
+            modal.style.display = 'flex';
+            congratulationMusic.play();
+        });
+    });
+
+    closeModal.addEventListener('click', function() {
+        modal.style.display = 'none';
+        congratulationMusic.pause();
+        congratulationMusic.currentTime = 0;
+    });
 });
-
-// Закрыть поздравление
-closeMessageButton.addEventListener('click', () => {
-    messageModal.style.display = 'none';
-    messageMusic.pause();
-    messageMusic.currentTime = 0; // Сбросить музыку
-    backgroundMusic.play();
-});
-
-// Создать падающие цветы
-function createFallingFlowers() {
-    const fallingFlowersContainer = document.getElementById('falling-flowers');
-    const flowerImages = ['flower1.png', 'flower2.png', 'flower3.png']; // Замените на свои файлы
-    for (let i = 0; i < 20; i++) {
-        const flower = document.createElement('img');
-        flower.src = '/static/' + flowerImages[Math.floor(Math.random() * flowerImages.length)];
-        flower.className = 'falling-flower';
-        flower.style.left = Math.random() * 100 + '%';
-        flower.style.animationDuration = (Math.random() * 3 + 5) + 's'; // От 5 до 8 секунд
-        flower.style.animationDelay = Math.random() * 5 + 's';
-        fallingFlowersContainer.appendChild(flower);
-    }
-}
-
-window.addEventListener('load', createFallingFlowers);
