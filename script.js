@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const music = document.getElementById('background-music');
-    music.play().catch(error => console.log('Ошибка воспроизведения музыки:', error));
+    const backgroundMusic = document.getElementById('background-music');
+    backgroundMusic.play().catch(error => console.log('Ошибка фоновой музыки:', error));
 
     // Эмоджи для падения
     const emojis = ['🌸', '🏵', '🌼', '🌺', '💐', '🧡', '❤️', '🩷', '❤️‍🔥', '💜'];
@@ -11,21 +11,27 @@ document.addEventListener('DOMContentLoaded', function() {
         emoji.classList.add('emoji');
         emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
         emoji.style.left = Math.random() * 100 + 'vw';
-        emoji.style.animationDuration = Math.random() * 5 + 5 + 's'; // Случайная скорость от 5 до 10 секунд
+        emoji.style.animationDuration = Math.random() * 5 + 5 + 's'; // Скорость от 5 до 10 секунд
         document.body.appendChild(emoji);
         emoji.addEventListener('animationend', function() {
             emoji.remove();
         });
     }
-    setInterval(createEmoji, 500); // Новый эмоджи каждые 500мс
+    setInterval(createEmoji, 500);
 
-    // Показ животных при нажатии на кнопку
-    document.getElementById('show-congratulations').addEventListener('click', function() {
-        document.querySelector('.container').style.display = 'none';
-        document.getElementById('animals-container').style.display = 'flex';
-    });
+    // Показ животных
+    const showButton = document.getElementById('show-congratulations');
+    if (showButton) {
+        showButton.addEventListener('click', function() {
+            console.log('Кнопка нажата'); // Для отладки
+            document.querySelector('.container').style.display = 'none';
+            document.getElementById('animals-container').style.display = 'flex';
+        });
+    } else {
+        console.error('Кнопка не найдена');
+    }
 
-    // Показ поздравления при нажатии на животное
+    // Показ поздравления
     const animals = document.querySelectorAll('.animal');
     const modal = document.getElementById('congratulation-modal');
     const girlName = document.getElementById('girl-name');
@@ -39,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
             girlName.textContent = name;
             congratulationMessage.textContent = С 8 марта, ${name}! Желаю тебе счастья, любви и всего наилучшего!;
             modal.style.display = 'flex';
-            congratulationMusic.play().catch(error => console.log('Ошибка воспроизведения музыки:', error));
+            congratulationMusic.play().catch(error => console.log('Ошибка поздравительной музыки:', error));
         });
     });
 
