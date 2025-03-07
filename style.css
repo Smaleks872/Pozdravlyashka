@@ -2,7 +2,8 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #f0f0f0; /* Цвет фона */
+    background: url('flowers-bg.gif') repeat; /* Живые обои с цветочками (замените на своё изображение) */
+    background-size: cover;
 }
 
 .container {
@@ -16,7 +17,7 @@ body {
 #show-congratulations {
     padding: 20px 40px;
     font-size: 24px;
-    background-color: #ff69b4; /* Розовый цвет */
+    background-color: #ff69b4;
     color: white;
     border: none;
     border-radius: 10px;
@@ -26,7 +27,7 @@ body {
 
 .bouquet {
     position: absolute;
-    width: 100px; /* Размер букета */
+    width: 100px;
 }
 
 .left {
@@ -41,19 +42,21 @@ body {
     transform: translateY(-50%);
 }
 
-/* Падающие цветочки */
-.flower {
+/* Падающие эмоджи */
+.emoji {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    background-image: url('flower.png'); /* Путь к изображению цветочка */
-    background-size: cover;
-    animation: fall linear infinite;
+    font-size: 24px;
+    animation: fall linear infinite, rotate linear infinite;
 }
 
 @keyframes fall {
-    0% { transform: translateY(-20px); opacity: 1; }
+    0% { transform: translateY(-50px); opacity: 1; }
     100% { transform: translateY(100vh); opacity: 0; }
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Животные */
@@ -81,14 +84,14 @@ body {
     font-size: 18px;
 }
 
-/* Модальное окно с поздравлением */
+/* Модальное окно */
 #congratulation-modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     display: none;
     justify-content: center;
     align-items: center;
@@ -105,4 +108,22 @@ body {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+/* Адаптивность для телефонов */
+@media (max-width: 768px) {
+    #show-congratulations {
+        font-size: 18px;
+        padding: 15px 30px;
+    }
+    .bouquet {
+        width: 60px;
+    }
+    .animal img {
+        width: 100px;
+        height: 100px;
+    }
+    .name {
+        font-size: 16px;
+    }
 }
