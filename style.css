@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: url('flowers-bg.gif') repeat; /* Живые обои с цветочками (замените на своё изображение) */
+    background: url('images/flowers-bg.gif') repeat; /* Живой фон с цветочками (замените на своё изображение) */
     background-size: cover;
 }
 
