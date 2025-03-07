@@ -3,33 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Адаптивный сайт</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-        }
-        .container {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            h1 {
-                font-size: 24px;
-            }
-        }
-    </style>
+    <title>Поздравление с 8 марта</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Привет, это адаптивный сайт!</h1>
-        <p>Этот текст будет выглядеть хорошо и на компьютере, и на телефоне.</p>
+        <img src="bouquet-left.png" class="bouquet left">
+        <button id="show-congratulations">Посмотреть поздравление</button>
+        <img src="bouquet-right.png" class="bouquet right">
     </div>
+    <div id="animals-container" style="display: none;">
+        <div class="animal" data-name="Алёна">
+            <img src="animal1.gif" alt="Животное 1">
+            <div class="name">🌸 Алёна 🌸</div>
+        </div>
+        <div class="animal" data-name="Аня (фк2)">
+            <img src="animal2.gif" alt="Животное 2">
+            <div class="name">🌺 Аня (фк2) 🌺</div>
+        </div>
+        <div class="animal" data-name="Патя">
+            <img src="animal3.gif" alt="Животное 3">
+            <div class="name">🌷 Патя 🌷</div>
+        </div>
+        <div class="animal" data-name="Света">
+            <img src="animal4.gif" alt="Животное 4">
+            <div class="name">💐 Света 💐</div>
+        </div>
+        <div class="animal" data-name="Настя">
+            <img src="animal5.gif" alt="Животное 5">
+            <div class="name">🌹 Настя 🌹</div>
+        </div>
+        <div class="animal" data-name="Аня (бух)">
+            <img src="animal6.gif" alt="Животное 6">
+            <div class="name">🌻 Аня (бух) 🌻</div>
+        </div>
+        <div class="animal" data-name="Даша">
+            <img src="animal7.gif" alt="Животное 7">
+            <div class="name">🌼 Даша 🌼</div>
+        </div>
+    </div>
+    <div id="congratulation-modal" style="display: none;">
+        <div id="congratulation-text">
+            <h2>Поздравление для <span id="girl-name"></span></h2>
+            <p id="congratulation-message"></p>
+            <button id="close-modal">Закрыть</button>
+        </div>
+    </div>
+    <!-- Фоновая музыка -->
+    <audio id="background-music" loop>
+        <source src="background-music.mp3" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио.
+    </audio>
+    <!-- Музыка для поздравления -->
+    <audio id="congratulation-music">
+        <source src="congratulation-music.mp3" type="audio/mpeg">
+    </audio>
+    <script src="script.js"></script>
 </body>
 </html>
